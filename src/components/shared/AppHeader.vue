@@ -140,10 +140,4 @@ export default {
 	</nav>
 </template>
 
-<style scoped>
-#nav a.router-link-exact-active {
-	@apply text-indigo-700;
-	@apply dark:text-indigo-400;
-	@apply font-medium;
-}
-</style>
+<style scoped></style>

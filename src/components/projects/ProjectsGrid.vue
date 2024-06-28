@@ -2,16 +2,18 @@
 import feather from 'feather-icons';
 import ProjectsFilter from './ProjectsFilter.vue';
 import ProjectSingle from './ProjectSingle.vue';
+import Button from '../reusable/Button.vue';
 import projects from '../../data/projects';
 
 export default {
-	components: { ProjectSingle, ProjectsFilter },
+	components: { ProjectSingle, ProjectsFilter, Button },
 	data: () => {
 		return {
 			projects,
 			projectsHeading: 'Проекты',
 			selectedCategory: '',
 			searchProject: '',
+      onPage: 12,
 		};
 	},
 	computed: {
@@ -24,6 +26,15 @@ export default {
 			}
 			return this.projects;
 		},
+    notAllVisible() {
+      for (let i in this.projects) {
+        if(this.projects[i].hidden) {
+          return true;
+        }
+      }
+
+      return false;
+    }
 	},
 	methods: {
 		// Filter projects by category
@@ -41,9 +52,23 @@ export default {
 			let project = new RegExp(this.searchProject, 'i');
 			return this.projects.filter((el) => el.title.match(project));
 		},
+    moreProjects() {
+      let count = this.onPage;
+
+      for (let i in this.projects) {
+        if(this.projects[i].hidden && count) {
+          this.projects[i].hidden = false;
+          count--;
+        }
+      }
+    }
 	},
 	mounted() {
 		feather.replace();
+
+    for (let i in this.projects) {
+      this.projects[i].hidden = i >= this.onPage
+    }
 	},
 };
 </script>
@@ -132,6 +157,17 @@ export default {
 			/>
 		</div>
 	</section>
+
+  <!-- Load more projects button -->
+  <div class="mt-10 sm:mt-20 flex justify-center" v-if="this.notAllVisible">
+    <div
+        class="font-medium flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
+        aria-label="Больше проектов"
+        @click="this.moreProjects()"
+    >
+      <Button title="Больше проектов" />
+    </div>
+  </div>
 </template>
 
 <style scoped></style>

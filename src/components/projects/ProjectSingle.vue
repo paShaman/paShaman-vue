@@ -9,6 +9,7 @@ export default {
 		to="/projects/single-project"
 		class="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
 		aria-label="Single Project"
+    :class="project.hidden ? 'hidden' : ''"
 	>
 		<div>
 			<img
