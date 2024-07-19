@@ -22,17 +22,17 @@ export default {
 				{
 					id: 1,
 					title: 'Kabul Project Management UI',
-					img: require('@/assets/images/ui-project-1.jpg'),
+					img: '/images/projects/tess/full.jpg',
 				},
 				{
 					id: 2,
 					title: 'Kabul Project Management UI',
-					img: require('@/assets/images/web-project-2.jpg'),
+          img: '/images/projects/tess/full.jpg',
 				},
 				{
 					id: 3,
 					title: 'Kabul Project Management UI',
-					img: require('@/assets/images/mobile-project-2.jpg'),
+          img: '/images/projects/tess/full.jpg',
 				},
 			],
 			projectInfo: {
@@ -123,5 +123,3 @@ export default {
 		<ProjectInfo :projectInfo="projectInfo" />
 	</div>
 </template>
-
-<style scoped></style>

@@ -29,7 +29,7 @@ export default {
 				class="flex flex-col justify-center items-center mb-12 sm:mb-20"
 			>
 				<p
-					class="font-semibold text-3xl sm:text-4xl font-semibold text-primary-dark dark:text-primary-light mb-5"
+					class="font-semibold text-3xl sm:text-4xl text-primary-dark dark:text-primary-light mb-5"
 				>
 					Социальные сети
 				</p>

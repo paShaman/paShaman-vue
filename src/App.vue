@@ -1,7 +1,7 @@
 <script>
 import feather from 'feather-icons';
-import AppHeader from './components/shared/AppHeader';
-import AppFooter from './components/shared/AppFooter';
+import AppHeader from './components/shared/AppHeader.vue';
+import AppFooter from './components/shared/AppFooter.vue';
 
 export default {
 	components: {
@@ -28,9 +28,11 @@ export default {
 		<AppHeader />
 
 		<!-- Render active component contents with vue transition -->
-		<transition name="fade" mode="out-in">
-			<router-view :theme="appTheme" />
-		</transition>
+    <router-view v-slot="{ Component }">
+      <transition name="fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
 
 		<!-- Scroll to top -->
 		<back-to-top

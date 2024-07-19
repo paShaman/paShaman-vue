@@ -1,5 +1,7 @@
 <script>
-import counter from 'vue3-autocounter';
+import counter from "vue-number-animation";
+import feather from "feather-icons";
+
 export default {
 	components: {
 		counter,
@@ -14,6 +16,8 @@ export default {
     };
 	},
   mounted() {
+    feather.replace();
+
     this.experience = new Date().getFullYear() - this.startYear;
 
     const today = new Date();
@@ -31,7 +35,15 @@ export default {
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-  }
+    format(num) {
+      const formatter = new Intl.NumberFormat('ru-Ru');
+
+      return formatter.format(Number.parseInt(num).toFixed(0));
+    }
+  },
+  updated() {
+    feather.replace();
+  },
 };
 </script>
 
@@ -49,12 +61,14 @@ export default {
               class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
           ></i>
           <counter
-            ref="counter"
-            :startAmount="0"
-            :endAmount="this.projects"
-            :duration="1"
-            :autoinit="true"
-            class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
+              ref="counter1"
+              :from="0"
+              :to="this.projects"
+              :duration="1.7"
+              :format="format"
+              autoplay
+              easing="linear"
+              class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
 				<span
@@ -72,11 +86,13 @@ export default {
               class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
           ></i>
           <counter
-            ref="counter"
-            :startAmount="0"
-            :endAmount="this.experience"
-            :duration="1"
-            :autoinit="true"
+              ref="counter2"
+              :from="0"
+              :to="this.experience"
+              :duration="1.5"
+              :format="format"
+              autoplay
+              easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
@@ -96,12 +112,13 @@ export default {
               class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
           ></i>
           <counter
-            ref="counter"
-            :startAmount="0"
-            :endAmount="this.cups"
-            :duration="1"
-            :autoinit="true"
-            separator=" "
+              ref="counter3"
+              :from="0"
+              :to="this.cups"
+              :duration="1.9"
+              :format="format"
+              autoplay
+              easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
@@ -120,11 +137,13 @@ export default {
               class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
           ></i>
           <counter
-            ref="counter"
-            :startAmount="0"
-            :endAmount="this.countries"
-            :duration="1"
-            :autoinit="true"
+              ref="counter4"
+              :from="0"
+              :to="this.countries"
+              :duration="1.6"
+              :format="format"
+              autoplay
+              easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>

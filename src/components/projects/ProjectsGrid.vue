@@ -13,7 +13,7 @@ export default {
 			projectsHeading: 'Проекты',
 			selectedCategory: '',
 			searchProject: '',
-      onPage: 12,
+      onPage: 9,
 		};
 	},
 	computed: {

@@ -1,7 +1,7 @@
 <script>
-import AppBanner from '@/components/shared/AppBanner';
+import AppBanner from '../components/shared/AppBanner.vue';
 import ProjectsGrid from '../components/projects/ProjectsGrid.vue';
-import AboutCounter from "@/components/about/AboutCounter.vue";
+import AboutCounter from "../components/about/AboutCounter.vue";
 
 export default {
 	name: 'Home',
@@ -14,19 +14,19 @@ export default {
 </script>
 
 <template>
-	<div class="container mx-auto">
-		<!-- Banner -->
-		<AppBanner class="mb-5 sm:mb-8" />
-  </div>
+  <div>
+    <div class="container mx-auto">
+      <!-- Banner -->
+      <AppBanner class="mb-5 sm:mb-8" />
+    </div>
 
-  <!-- About counter -->
-  <AboutCounter />
+    <!-- About counter -->
+    <AboutCounter />
 
-  <div class="container mx-auto">
-		<!-- Projects -->
-		<ProjectsGrid />
+    <div class="container mx-auto">
+      <!-- Projects -->
+      <ProjectsGrid />
 
+    </div>
 	</div>
 </template>
-
-<style scoped></style>
