@@ -1,6 +1,4 @@
 <script>
-import feather from 'feather-icons';
-
 export default {
 	name: 'Home',
 	data: () => {
@@ -12,7 +10,6 @@ export default {
 		this.theme = localStorage.getItem('theme') || 'light';
 	},
 	mounted() {
-		feather.replace();
 		this.theme = localStorage.getItem('theme') || 'light';
 
     var TxtType = function(el, toRotate, period) {
@@ -66,9 +63,6 @@ export default {
       }
     }
 	},
-	updated() {
-		feather.replace();
-	},
 	methods: {},
 };
 </script>
@@ -86,7 +80,7 @@ export default {
         Павел Никитин
 			</h1>
 			<p
-				class="font-medium mt-2 text-lg sm:text-xl  xl:text-2xl text-center sm:text-left leading-none text-gray-400"
+				class="font-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-snug text-gray-400"
 			>
 				Backend & Frontend разработчик.<br class="md:hidden"> Создаю  <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-bold typewrite" data-period="2000" data-type='[ "Web Applications", "Web Development", "Layouts", "Landing Pages", "Websites" ]'></span>
       </p>

@@ -1,6 +1,5 @@
 <script>
 import ThemeSwitcher from '../ThemeSwitcher.vue';
-import feather from 'feather-icons';
 
 export default {
 	components: {
@@ -65,7 +64,6 @@ export default {
 		this.theme = localStorage.getItem('theme') || 'light';
 	},
 	mounted() {
-		feather.replace();
 		this.theme = localStorage.getItem('theme') || 'light';
 
     let color = this.colors[this.randomInt(1, this.colors.length - 1)];

@@ -67,10 +67,10 @@ export default {
 	<div class="mt-10 sm:mt-20 bg-primary-light dark:bg-ternary-dark shadow-sm">
 		<!-- About me counters -->
 		<div
-			class="font-normal container mx-auto py-20 block sm:flex sm:justify-between lg:justify-around sm:items-center flex-wrap"
+			class="font-normal container mx-auto py-12 md:py-20 flex sm:justify-between lg:justify-around sm:items-center flex-wrap"
 		>
 			<!-- Years of experience counter -->
-			<div class="mb-16 sm:mb-0 sm:w-1/2 md:w-auto sm:pb-10 md:pb-0">
+			<div class="mb-12 w-1/2 md:w-auto md:mb-0">
         <div class="flex items-center gap-2 mb-2 justify-center">
           <i
               data-feather="layout"
@@ -79,7 +79,7 @@ export default {
           <counter
               ref="counter1"
               :from="0"
-              :to="this.projects"
+              :to="projects"
               :duration="1.7"
               :format="format"
               autoplay
@@ -95,7 +95,7 @@ export default {
 			</div>
 
 			<!-- GitHub stars counter -->
-			<div class="mb-16 sm:mb-0 sm:w-1/2 md:w-auto sm:pb-10 md:pb-0">
+			<div class="mb-12 w-1/2 md:w-auto md:mb-0">
         <div class="flex items-center gap-2 mb-2 justify-center">
           <i
               data-feather="clock"
@@ -104,7 +104,7 @@ export default {
           <counter
               ref="counter2"
               :from="0"
-              :to="this.experience"
+              :to="experience"
               :duration="1.5"
               :format="format"
               autoplay
@@ -121,7 +121,7 @@ export default {
 			</div>
 
 			<!-- Positive feedback counter -->
-			<div class="mb-16 sm:mb-0 sm:w-1/2 md:w-auto">
+			<div class="w-1/2 md:w-auto">
         <div class="flex items-center gap-2 mb-2 justify-center">
           <i
               data-feather="coffee"
@@ -130,7 +130,7 @@ export default {
           <counter
               ref="counter3"
               :from="0"
-              :to="this.cups"
+              :to="cups"
               :duration="1.9"
               :format="format"
               autoplay
@@ -146,7 +146,7 @@ export default {
 			</div>
 
 			<!-- Projects completed counter -->
-			<div class="sm:w-1/2 md:w-auto">
+			<div class="w-1/2 md:w-auto">
         <div class="flex items-center gap-2 mb-2 justify-center">
           <i
               data-feather="globe"
@@ -155,7 +155,7 @@ export default {
           <counter
               ref="counter4"
               :from="0"
-              :to="this.countries"
+              :to="countries"
               :duration="1.6"
               :format="format"
               autoplay
