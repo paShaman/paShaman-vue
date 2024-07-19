@@ -10,33 +10,42 @@ export default {
 	data: () => {
 		return {
 			projects: [],
+			tags: [],
 			projectsHeading: 'Проекты',
 			selectedCategory: '',
 			searchProject: '',
       onPage: 9,
+      page: 1,
       endPoint: 'https://paShaman.ru'
 		};
 	},
 	computed: {
 		// Get the filtered projects
 		filteredProjects() {
+      let t = this;
+      let projects = this.projects;
+
 			if (this.selectedCategory) {
-				return this.filterProjectsByCategory();
+        projects = this.filterProjectsByCategory();
 			} else if (this.searchProject) {
-				return this.filterProjectsBySearch();
+        projects = this.filterProjectsBySearch();
 			}
-			return this.projects;
-		},
-    notAllVisible() {
-      for (let i in this.projects) {
-        if(this.projects[i].hidden) {
-          return true;
-        }
+
+      for (let i in projects) {
+        projects[i].hidden = i >= this.onPage * this.page;
       }
 
-      return false;
-    }
+			return projects;
+		},
 	},
+  watch: {
+    selectedCategory(newData, oldData) {
+      this.page = 1;
+    },
+    searchProject(newData, oldData) {
+      this.page = 1;
+    },
+  },
 	methods: {
     loadProjects() {
       let t = this;
@@ -49,11 +58,7 @@ export default {
       fetch(this.endPoint + '/load-projects', fetchParams)
           .then((response) => {
             response.json().then((data) => {
-              for (let i in data) {
-                data[i].hidden = i >= this.onPage
-              }
-
-              t.projects.push(...data)
+              t.projects.push(...data.projects);
             });
           })
           .catch((err) => {
@@ -66,24 +71,18 @@ export default {
 				let category =
 					item.category.charAt(0).toUpperCase() +
 					item.category.slice(1);
-				console.log(category);
+
 				return category.includes(this.selectedCategory);
 			});
 		},
 		// Filter projects by title search
 		filterProjectsBySearch() {
 			let project = new RegExp(this.searchProject, 'i');
-			return this.projects.filter((el) => el.title.match(project));
+
+			return this.projects.filter((el) => el.name.match(project));
 		},
     moreProjects() {
-      let count = this.onPage;
-
-      for (let i in this.projects) {
-        if(this.projects[i].hidden && count) {
-          this.projects[i].hidden = false;
-          count--;
-        }
-      }
+      ++this.page;
     }
 	},
 	mounted() {
@@ -180,7 +179,7 @@ export default {
 	</section>
 
   <!-- Load more projects button -->
-  <div class="mt-10 sm:mt-20 flex justify-center" v-if="this.notAllVisible">
+  <div class="mt-10 sm:mt-20 flex justify-center" v-if="filteredProjects.length > page*onPage">
     <div
         class="font-medium flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
         aria-label="Больше проектов"

@@ -10,11 +10,12 @@ export default {
 </script>
 
 <template>
-	<router-link
+	<component
+    :is="project.link == '#' ? 'span' : 'router-link'"
 		:to="project.link"
-		class="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
+		class="rounded-xl shadow-lg hover:shadow-xl mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
 		aria-label="Single Project"
-    :class="project.hidden ? 'hidden' : ''"
+    v-if="!project.hidden"
 	>
 		<div>
 			<img
@@ -36,7 +37,5 @@ export default {
         {{ project.tags }}
       </div>
 		</div>
-	</router-link>
+	</component>
 </template>
-
-<style lang="scss" scoped></style>
