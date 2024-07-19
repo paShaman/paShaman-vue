@@ -59,18 +59,20 @@ export default {
       ]
 		};
 	},
-
 	created() {
 		this.theme = localStorage.getItem('theme') || 'light';
 	},
 	mounted() {
 		this.theme = localStorage.getItem('theme') || 'light';
 
-    let color = this.colors[this.randomInt(1, this.colors.length - 1)];
-
-    this.gradientClass = color.from + ' ' + color.to;
+    this.calcGradientClass();
 	},
 	methods: {
+    calcGradientClass() {
+      let color = this.colors[this.randomInt(1, this.colors.length - 1)];
+
+      this.gradientClass = color.from + ' ' + color.to;
+    },
     randomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -111,7 +113,7 @@ export default {
 				<!-- Header logos -->
 				<div>
 					<router-link to="/">
-            <span class="text-5xl bg-gradient-to-r bg-clip-text text-transparent font-bold" :class="gradientClass">paShaman</span>
+            <span class="text-5xl bg-gradient-to-r bg-clip-text text-transparent font-bold" :class="gradientClass" @click="calcGradientClass">paShaman</span>
 					</router-link>
 				</div>
 
@@ -137,5 +139,3 @@ export default {
 		</div>
 	</nav>
 </template>
-
-<style scoped></style>
