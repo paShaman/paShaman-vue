@@ -88,7 +88,7 @@ export default {
           />
         </div>
 				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light"
+					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
 				>
 					{{ pluralize(this.projects, ['Проект', 'Проекта', 'Проектов']) }}
 				</span>
@@ -113,7 +113,7 @@ export default {
           />
         </div>
 				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light"
+					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
 					>
           {{ pluralize(this.experience, ['Год опыта', 'Года опыта', 'Лет опыта']) }}
         </span
@@ -139,7 +139,7 @@ export default {
           />
         </div>
 				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light"
+					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
 				>
 					{{ pluralize(this.cups, ['Чашка кофе', 'Чашки кофе', 'Чашек кофе']) }}
 				</span>
@@ -164,7 +164,7 @@ export default {
           />
         </div>
 				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light"
+					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
 				>
 					{{ pluralize(this.countries, ['Страна посещена', 'Страны посещено', 'Стран посещено']) }}
 				</span>

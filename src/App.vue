@@ -50,13 +50,6 @@ export default {
 </template>
 
 <style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-}
-
 .vue-back-to-top {
 	@apply p-2 bg-indigo-500 hover:bg-indigo-600 text-white transition
         duration-500

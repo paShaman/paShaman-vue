@@ -56,6 +56,7 @@ export default {
           .then((response) => {
             response.json().then((data) => {
               t.projects.push(...data.projects);
+              t.tags.push(...data.tags);
             });
           })
           .catch((err) => {
@@ -114,7 +115,7 @@ export default {
 					/>
 				</div>
 
-        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer">
+        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer" :class="{active: showTags == true}">
           Теги
           <i
               data-feather="chevron-down"
@@ -125,7 +126,7 @@ export default {
 		</div>
 
     <div class="tags-outer" :class="{'active': showTags == true}"><div><div>
-      <ProjectsTags @filter="selectedTags = $event" />
+      <ProjectsTags :tags="tags" />
     </div></div></div>
 
 
@@ -161,10 +162,16 @@ export default {
 
   >div{
     overflow: hidden;
+    >div{
+      padding-block: .5rem;
+    }
   }
 
   &.active{
     grid-template-rows: 1fr;
   }
+}
+.active > svg.feather{
+  rotate: 180deg;
 }
 </style>

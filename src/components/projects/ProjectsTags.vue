@@ -1,39 +1,50 @@
 <script>
 export default {
 	props: {
-		select: {
-			type: String,
-			default: 'projects',
-		},
-		selectOptions: {
+		tags: {
 			type: Array,
-			default: () => [
-				'Web Application',
-				'Mobile Application',
-				'UI/UX Design',
-				'Branding & Anim',
-			],
+			default: [],
 		},
 	},
+  methods: {
+    calcTagClass(tag) {
+      let str = ''
+
+      if (tag.count > 100) {
+        str = 'bg-violet-300 text-violet-700 hover:border-violet-700 border-violet-400';
+      } else if (tag.count > 50) {
+        str = 'bg-emerald-300 text-emerald-700 hover:border-emerald-700 border-emerald-400';
+      } else if (tag.count > 10) {
+        str = 'bg-amber-300 text-amber-700 hover:border-amber-700 border-amber-400';
+      } else if (tag.count > 5) {
+        str = 'bg-cyan-200 text-cyan-600 hover:border-cyan-600 border-cyan-300';
+      } else {
+        str = 'bg-gray-100 text-gray-500 hover:border-gray-500 border-gray-200';
+      }
+
+      if (tag.selected) {
+        str = 'bg-rose-600 text-rose-200 border-rose-900';
+      }
+
+      return str;
+    },
+    toggleTag(tag) {
+      tag.selected = !tag.selected;
+    },
+    selectAll() {
+      for (let i in this.tags) {
+        this.tags[i].selected = false;
+      }
+    }
+  }
 };
 </script>
 
 <template>
-	<select
-		@change="$emit('filter', $event.target.value)"
-		:name="select"
-		:id="select"
-		class="font-medium px-4 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
-		<option value class="text-sm sm:text-md">Все проекты</option>
-		<option
-			v-for="option in selectOptions"
-			:key="option"
-			:value="option"
-			class="sm:text-md"
-		>
-			{{ option }}
-		</option>
-	</select>
+  <div class="flex gap-2 flex-wrap">
+    <span class="inline-block rounded-md px-2.5 cursor-pointer transition-all border-2 duration-300 hover:border-gray-500" @click="selectAll()">Все - <b>{{ tags.length }}</b></span>
+    <div v-for="tag in tags">
+      <span class="inline-block rounded-md px-2.5 cursor-pointer transition-all border-2 duration-300" :class="calcTagClass(tag)" @click="toggleTag(tag)">{{ tag.name }} - <b>{{ tag.count }}</b></span>
+    </div>
+  </div>
 </template>
-
-<style lang="scss" scoped></style>
