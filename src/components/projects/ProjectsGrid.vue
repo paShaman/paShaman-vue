@@ -24,6 +24,10 @@ export default {
       let t = this;
       let projects = this.projects;
 
+      if (this.selectedTags.length != 0) {
+        projects = this.filterProjectsByTags();
+      }
+
       if (this.searchProject) {
         projects = this.filterProjectsBySearch();
 			}
@@ -63,14 +67,24 @@ export default {
             console.error(err);
           });
     },
+    filterProjectsByTags() {
+      let t = this;
+
+      let tags = t.selectedTags.map(item => item.name.toString());
+
+      return this.projects.filter((el) => el.tags.filter(value => tags.includes(value)).length > 0);
+    },
 		// Filter projects by title search
 		filterProjectsBySearch() {
 			let search = new RegExp(this.searchProject, 'i');
 
-			return this.projects.filter((el) => el.name.match(search) || el.tags.match(search));
+			return this.projects.filter((el) => el.name.match(search) || el.tags.join(' ').match(search));
 		},
     moreProjects() {
       ++this.page;
+    },
+    selectTags(tags) {
+      this.selectedTags = tags;
     }
 	},
 	mounted() {
@@ -126,9 +140,8 @@ export default {
 		</div>
 
     <div class="tags-outer" :class="{'active': showTags == true}"><div><div>
-      <ProjectsTags :tags="tags" />
+      <ProjectsTags :tags="tags" @select-tags="selectTags"  />
     </div></div></div>
-
 
 		<!-- Projects grid -->
 		<div

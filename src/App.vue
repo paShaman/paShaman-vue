@@ -50,6 +50,9 @@ export default {
 </template>
 
 <style>
+img{
+  width: 100%;
+}
 .vue-back-to-top {
 	@apply p-2 bg-indigo-500 hover:bg-indigo-600 text-white transition
         duration-500

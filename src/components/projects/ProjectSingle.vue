@@ -34,7 +34,7 @@ export default {
         </div>
       </div>
       <div class="font-medium text-gray-400 dark:text-gray-500 text-nowrap overflow-ellipsis overflow-hidden w-full">
-        {{ project.tags }}
+        {{ project.tags.join(' ') }}
       </div>
 		</div>
 	</component>
