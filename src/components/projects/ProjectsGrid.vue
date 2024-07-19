@@ -114,7 +114,13 @@ export default {
 					/>
 				</div>
 
-        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer">Теги</span>
+        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer">
+          Теги
+          <i
+              data-feather="chevron-down"
+              class="size-4 ms-2"
+          ></i>
+        </span>
 			</div>
 		</div>
 
