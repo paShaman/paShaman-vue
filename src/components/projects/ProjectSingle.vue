@@ -1,19 +1,24 @@
 <script>
 export default {
 	props: ['project'],
+  data: () => {
+    return {
+      endPoint: 'https://paShaman.ru'
+    };
+  },
 };
 </script>
 
 <template>
 	<router-link
-		to="/projects/single-project"
+		:to="project.link"
 		class="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
 		aria-label="Single Project"
     :class="project.hidden ? 'hidden' : ''"
 	>
 		<div>
 			<img
-				:src="project.img"
+				:src="endPoint + project.image"
 				:alt="project.title"
 				class="rounded-t-xl border-none"
 			/>

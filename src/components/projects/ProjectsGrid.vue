@@ -3,17 +3,18 @@ import feather from 'feather-icons';
 import ProjectsFilter from './ProjectsFilter.vue';
 import ProjectSingle from './ProjectSingle.vue';
 import Button from '../reusable/Button.vue';
-import projects from '../../data/projects';
+//import projects from '../../data/projects';
 
 export default {
 	components: { ProjectSingle, ProjectsFilter, Button },
 	data: () => {
 		return {
-			projects,
+			projects: [],
 			projectsHeading: 'Проекты',
 			selectedCategory: '',
 			searchProject: '',
       onPage: 9,
+      endPoint: 'https://paShaman.ru'
 		};
 	},
 	computed: {
@@ -37,6 +38,28 @@ export default {
     }
 	},
 	methods: {
+    loadProjects() {
+      let t = this;
+
+      let fetchParams = {
+        method: 'GET',
+        //headers: headers,
+      };
+
+      fetch(this.endPoint + '/load-projects', fetchParams)
+          .then((response) => {
+            response.json().then((data) => {
+              for (let i in data) {
+                data[i].hidden = i >= this.onPage
+              }
+
+              t.projects.push(...data)
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
 		// Filter projects by category
 		filterProjectsByCategory() {
 			return this.projects.filter((item) => {
@@ -66,9 +89,7 @@ export default {
 	mounted() {
 		feather.replace();
 
-    for (let i in this.projects) {
-      this.projects[i].hidden = i >= this.onPage
-    }
+    this.loadProjects();
 	},
 };
 </script>

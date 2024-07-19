@@ -8,24 +8,40 @@ export default {
 	},
 	data: () => {
 		return {
-      startYear: 2006,
       experience: 0,
-      projects: 292,
-      countries: 24,
-      cups: 6794
+      projects: 0,
+      countries: 0,
+      cups: 0,
+      endPoint: 'https://paShaman.ru'
     };
 	},
   mounted() {
     feather.replace();
 
-    this.experience = new Date().getFullYear() - this.startYear;
-
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-
-    this.cups = Math.floor((this.experience * 365 * 100 + dayOfYear * this.randomInt(100, 200)) / 100);
+    this.loadCounters();
   },
   methods: {
+    loadCounters() {
+      let t = this;
+
+      let fetchParams = {
+        method: 'GET',
+        //headers: headers,
+      };
+
+      fetch(this.endPoint + '/load-counters', fetchParams)
+          .then((response) => {
+            response.json().then((data) => {
+              t.experience = data.experience;
+              t.projects = data.projects;
+              t.countries = data.countries;
+              t.cups = data.cups;
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
     pluralize(count, words) {
       var cases = [2, 0, 1, 1, 1, 2];
       return words[ (count % 100 > 4 && count % 100 < 20) ? 2 : cases[ Math.min(count % 10, 5)] ];
@@ -51,7 +67,7 @@ export default {
 	<div class="mt-10 sm:mt-20 bg-primary-light dark:bg-ternary-dark shadow-sm">
 		<!-- About me counters -->
 		<div
-			class="font-normal container mx-auto py-20 block sm:flex sm:justify-between sm:items-center flex-wrap"
+			class="font-normal container mx-auto py-20 block sm:flex sm:justify-between lg:justify-around sm:items-center flex-wrap"
 		>
 			<!-- Years of experience counter -->
 			<div class="mb-16 sm:mb-0 sm:w-1/2 md:w-auto sm:pb-10 md:pb-0">
