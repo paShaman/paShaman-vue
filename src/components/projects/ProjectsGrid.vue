@@ -77,9 +77,9 @@ export default {
 		},
 		// Filter projects by title search
 		filterProjectsBySearch() {
-			let project = new RegExp(this.searchProject, 'i');
+			let search = new RegExp(this.searchProject, 'i');
 
-			return this.projects.filter((el) => el.name.match(project));
+			return this.projects.filter((el) => el.name.match(search) || el.tags.match(search));
 		},
     moreProjects() {
       ++this.page;
@@ -99,37 +99,17 @@ export default {
 		<!-- Projects grid title -->
 		<div class="text-center">
 			<p
-				class="text-2xl sm:text-5xl font-semibold mb-2 text-ternary-dark dark:text-ternary-light"
+				class="text-2xl sm:text-5xl font-semibold mb-2 text-ternary-dark dark:text-ternary-light flex items-baseline justify-center gap-3"
 			>
-				{{ projectsHeading }}
+				{{ projectsHeading }} <small class="text-gray-300 font-light">{{ filteredProjects.length }}</small>
 			</p>
 		</div>
 
 		<!-- Filter and search projects -->
 		<div class="mt-10 sm:mt-10">
-			<div
-				class="
-					flex
-					justify-between
-					border-b border-primary-light
-					dark:border-secondary-dark
-					pb-3
-					gap-2
-				"
-			>
+			<div class="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-2">
 				<div class="flex justify-between gap-2">
-					<span
-						class="
-							hidden
-							sm:block
-							bg-primary-light
-							dark:bg-ternary-dark
-							p-2.5
-							shadow-sm
-							rounded-xl
-							cursor-pointer
-							"
-					>
+					<span class="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer">
 						<i
 							data-feather="search"
 							class="text-ternary-dark dark:text-ternary-light"
@@ -137,23 +117,7 @@ export default {
 					</span>
 					<input
 						v-model="searchProject"
-						class="font-medium
-						pl-3
-						pr-1
-						sm:px-4
-						py-2
-						border-1 border-gray-200
-						dark:border-secondary-dark
-						rounded-lg
-						text-sm
-						sm:text-md
-						bg-secondary-light
-						dark:bg-ternary-dark
-						text-primary-dark
-						dark:text-ternary-light
-						w-full
-						sm:w-auto
-						"
+						class="font-medium pl-3 pr-1 sm:px-4 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light w-full sm:w-auto"
 						id="name"
 						name="name"
 						type="search"
@@ -162,6 +126,7 @@ export default {
 						aria-label="Name"
 					/>
 				</div>
+
 				<ProjectsFilter @filter="selectedCategory = $event" />
 			</div>
 		</div>
