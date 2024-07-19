@@ -1,22 +1,21 @@
 <script>
 import feather from 'feather-icons';
-import ProjectsFilter from './ProjectsFilter.vue';
+import ProjectsTags from './ProjectsTags.vue';
 import ProjectSingle from './ProjectSingle.vue';
-import Button from '../reusable/Button.vue';
-//import projects from '../../data/projects';
 
 export default {
-	components: { ProjectSingle, ProjectsFilter, Button },
+	components: { ProjectSingle, ProjectsTags },
 	data: () => {
 		return {
 			projects: [],
 			tags: [],
 			projectsHeading: 'Проекты',
-			selectedCategory: '',
 			searchProject: '',
+			selectedTags: [],
       onPage: 9,
       page: 1,
-      endPoint: 'https://paShaman.ru'
+      endPoint: 'https://paShaman.ru',
+      showTags: false
 		};
 	},
 	computed: {
@@ -25,9 +24,7 @@ export default {
       let t = this;
       let projects = this.projects;
 
-			if (this.selectedCategory) {
-        projects = this.filterProjectsByCategory();
-			} else if (this.searchProject) {
+      if (this.searchProject) {
         projects = this.filterProjectsBySearch();
 			}
 
@@ -39,7 +36,7 @@ export default {
 		},
 	},
   watch: {
-    selectedCategory(newData, oldData) {
+    selectedTags(newData, oldData) {
       this.page = 1;
     },
     searchProject(newData, oldData) {
@@ -65,16 +62,6 @@ export default {
             console.error(err);
           });
     },
-		// Filter projects by category
-		filterProjectsByCategory() {
-			return this.projects.filter((item) => {
-				let category =
-					item.category.charAt(0).toUpperCase() +
-					item.category.slice(1);
-
-				return category.includes(this.selectedCategory);
-			});
-		},
 		// Filter projects by title search
 		filterProjectsBySearch() {
 			let search = new RegExp(this.searchProject, 'i');
@@ -127,9 +114,14 @@ export default {
 					/>
 				</div>
 
-				<ProjectsFilter @filter="selectedCategory = $event" />
+        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer">Теги</span>
 			</div>
 		</div>
+
+    <div class="tags-outer" :class="{'active': showTags == true}"><div><div>
+      <ProjectsTags @filter="selectedTags = $event" />
+    </div></div></div>
+
 
 		<!-- Projects grid -->
 		<div
@@ -146,13 +138,27 @@ export default {
   <!-- Load more projects button -->
   <div class="mt-10 sm:mt-20 flex justify-center" v-if="filteredProjects.length > page*onPage">
     <div
-        class="font-medium flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
+        class="font-medium flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300 cursor-pointer"
         aria-label="Больше проектов"
         @click="this.moreProjects()"
     >
-      <Button title="Больше проектов" />
+      Больше проектов
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style lang="less" scoped>
+.tags-outer{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all .3s ease;
+
+  >div{
+    overflow: hidden;
+  }
+
+  &.active{
+    grid-template-rows: 1fr;
+  }
+}
+</style>
