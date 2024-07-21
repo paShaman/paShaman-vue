@@ -6,6 +6,7 @@ export default {
 			type: Array,
 			default: [],
 		},
+    cnt: 0
 	},
   methods: {
     calcTagClass(tag) {
@@ -47,7 +48,7 @@ export default {
 
 <template>
   <div class="flex gap-2 flex-wrap">
-    <span class="inline-block rounded-md px-2.5 cursor-pointer transition-all border-2 duration-300 bg-white hover:border-gray-500" @click="selectAll()">Все - <b>{{ tags.length }}</b></span>
+    <span class="inline-block rounded-md px-2.5 cursor-pointer transition-all border-2 duration-300 bg-white hover:border-gray-500" @click="selectAll()">Все - <b>{{ cnt }}</b></span>
     <div v-for="tag in tags">
       <span class="inline-block rounded-md px-2.5 cursor-pointer transition-all border-2 duration-300" :class="calcTagClass(tag)" @click="toggleTag(tag)">{{ tag.name }} - <b>{{ tag.count }}</b></span>
     </div>

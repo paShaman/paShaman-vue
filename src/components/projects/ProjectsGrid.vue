@@ -141,7 +141,7 @@ export default {
 		</div>
 
     <div class="tags-outer" :class="{'active': showTags == true}"><div><div>
-      <ProjectsTags :tags="tags" @select-tags="selectTags"  />
+      <ProjectsTags :tags="tags" :cnt="projects.length" @select-tags="selectTags"  />
     </div></div></div>
 
 		<!-- Projects grid -->
