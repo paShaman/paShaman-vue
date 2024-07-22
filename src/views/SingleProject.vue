@@ -13,6 +13,7 @@ export default {
 	},
 	data: () => {
 		return {
+      project: {},
 			singleProjectHeader: {
 				singleProjectTitle: 'Project Management UI',
 				singleProjectDate: 'Jul 26, 2021',
@@ -101,13 +102,38 @@ export default {
 			},
 		};
 	},
-	mounted() {
-		feather.replace();
-	},
 	updated() {
 		feather.replace();
 	},
-	methods: {},
+  mounted() {
+    feather.replace();
+
+    this.loadProject();
+  },
+  methods: {
+    loadProject() {
+      let t = this;
+
+      let fetchParams = {
+        method: 'GET',
+        //headers: headers,
+      };
+
+      fetch(import.meta.env.VITE_ENDPOINT + '/load-projects/' + this.$route.params.link, fetchParams)
+          .then((response) => {
+            response.json().then((data) => {
+              if (data) {
+                t.project = data;
+              } else {
+                t.$router.push({ name: '404' });
+              }
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+  }
 };
 </script>
 

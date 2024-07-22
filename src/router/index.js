@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
+import SingleProject from '../views/SingleProject.vue';
 
 const routes = [
-	{ path: '/404', component: NotFound },
-	{ path: '/:pathMatch(.*)*', redirect: '/404' },
+	{ path: '/404', component: NotFound, name: '404' },
+	{ path: '/:pathMatch(.*)*', redirect: { name: '404' } },
 	{
 		path: '/',
 		name: 'Home',
@@ -24,13 +25,7 @@ const routes = [
 	{
 		path: '/projects/:link',
 		name: 'Single Project',
-		// route level code-splitting
-		// this generates a separate chunk (projects.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () =>
-			import(
-				/* webpackChunkName: "projects" */ '../views/SingleProject.vue'
-			),
+		component: SingleProject,
 		meta: {
 			title: 'paShaman - Project',
 		},

@@ -1,11 +1,11 @@
 <script>
 import feather from 'feather-icons';
 import ProjectsTags from './ProjectsTags.vue';
-import ProjectSingle from './ProjectSingle.vue';
+import ProjectItem from './ProjectItem.vue';
 import InfiniteLoading from "v3-infinite-loading";
 
 export default {
-	components: { ProjectSingle, ProjectsTags, InfiniteLoading },
+	components: { ProjectItem, ProjectsTags, InfiniteLoading },
 	data: () => {
 		return {
 			projects: [],
@@ -149,7 +149,7 @@ export default {
 		<div
 			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-10"
 		>
-			<ProjectSingle
+			<ProjectItem
 				v-for="project in filteredProjects"
 				:key="project.id"
 				:project="project"
