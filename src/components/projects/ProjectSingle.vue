@@ -3,9 +3,9 @@ export default {
 	props: ['project'],
   data: () => {
     return {
-      endPoint: 'https://paShaman.ru'
+
     };
-  },
+  }
 };
 </script>
 
@@ -19,7 +19,7 @@ export default {
 	>
 		<div>
 			<img
-				:src="endPoint + project.image"
+				:src="project.image"
 				:alt="project.title"
 				class="rounded-t-xl border-none"
 			/>

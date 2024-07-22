@@ -12,7 +12,6 @@ export default {
       projects: 0,
       countries: 0,
       cups: 0,
-      endPoint: 'https://paShaman.ru'
     };
 	},
   mounted() {
@@ -29,7 +28,7 @@ export default {
         //headers: headers,
       };
 
-      fetch(this.endPoint + '/load-counters', fetchParams)
+      fetch(import.meta.env.VITE_ENDPOINT + '/load-counters', fetchParams)
           .then((response) => {
             response.json().then((data) => {
               t.experience = data.experience;

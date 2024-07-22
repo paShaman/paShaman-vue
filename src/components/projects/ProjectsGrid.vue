@@ -15,7 +15,6 @@ export default {
 			selectedTags: [],
       onPage: 9,
       page: 1,
-      endPoint: 'https://paShaman.ru',
       showTags: false
 		};
 	},
@@ -59,7 +58,7 @@ export default {
 
       let url = '/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
 
-      fetch(this.endPoint + url, fetchParams)
+      fetch(import.meta.env.VITE_ENDPOINT + url, fetchParams)
           .then((response) => {
             response.json().then((data) => {
               t.projects.push(...data.projects);
