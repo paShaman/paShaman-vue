@@ -1,10 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
+	{ path: '/404', component: NotFound },
+	{ path: '/:pathMatch(.*)*', redirect: '/404' },
 	{
 		path: '/',
 		name: 'Home',
+		component: Home,
+		meta: {
+			title: 'paShaman - Home',
+		},
+	},
+	{
+		path: '/full',
+		name: 'Full',
 		component: Home,
 		meta: {
 			title: 'paShaman - Home',

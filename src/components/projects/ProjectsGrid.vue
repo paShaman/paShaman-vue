@@ -57,7 +57,9 @@ export default {
         //headers: headers,
       };
 
-      fetch(this.endPoint + '/load-projects', fetchParams)
+      let url = '/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
+
+      fetch(this.endPoint + url, fetchParams)
           .then((response) => {
             response.json().then((data) => {
               t.projects.push(...data.projects);
