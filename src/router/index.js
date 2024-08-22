@@ -11,7 +11,7 @@ const routes = [
 		name: 'Home',
 		component: Home,
 		meta: {
-			title: 'paShaman - Home',
+			title: 'paShaman - Portfolio',
 		},
 	},
 	{
@@ -19,7 +19,7 @@ const routes = [
 		name: 'Full',
 		component: Home,
 		meta: {
-			title: 'paShaman - Home',
+			title: 'paShaman - Full',
 		},
 	},
 	{

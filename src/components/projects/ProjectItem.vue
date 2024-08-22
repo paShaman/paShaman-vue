@@ -27,7 +27,7 @@ export default {
 		<div class="px-4 py-6">
       <div class="flex items-center justify-between mb-2 gap-3">
         <div class="text-xl text-ternary-dark dark:text-ternary-light font-semibold flex-1 text-left text-nowrap overflow-ellipsis overflow-hidden">
-          {{ project.title }}
+          {{ project.name }}
         </div>
         <div class="font-semibold text-gray-500 dark:text-gray-600 shrink-0">
           {{ project.date }}
