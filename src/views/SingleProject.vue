@@ -31,7 +31,7 @@ export default {
         //headers: headers,
       };
 
-      fetch(import.meta.env.VITE_ENDPOINT + '/load-projects/' + this.$route.params.link, fetchParams)
+      fetch(import.meta.env.VITE_ENDPOINT + '/api/load-projects/' + this.$route.params.link, fetchParams)
           .then((response) => {
             response.json().then((data) => {
               if (data) {

@@ -138,7 +138,7 @@ export default {
         <div
             class="font-normal text-primary-dark dark:text-ternary-light flex gap-1 flex-wrap"
         >
-          <span v-for="tag in project.tags" class="inline-block rounded-md px-2.5 border-2">{{ tag }}</span>
+          <span v-for="tag in project.tags" class="inline-block rounded-md px-2.5 border-2 dark:border-white/20">{{ tag }}</span>
         </div>
       </div>
 

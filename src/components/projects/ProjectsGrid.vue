@@ -56,9 +56,9 @@ export default {
         //headers: headers,
       };
 
-      let url = '/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
+      let url = import.meta.env.VITE_ENDPOINT + '/api/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
 
-      fetch(import.meta.env.VITE_ENDPOINT + url, fetchParams)
+      fetch(url, fetchParams)
           .then((response) => {
             response.json().then((data) => {
               t.projects.push(...data.projects);

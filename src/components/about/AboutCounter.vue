@@ -28,7 +28,7 @@ export default {
         //headers: headers,
       };
 
-      fetch(import.meta.env.VITE_ENDPOINT + '/load-counters', fetchParams)
+      fetch(import.meta.env.VITE_ENDPOINT + '/api/load-counters', fetchParams)
           .then((response) => {
             response.json().then((data) => {
               t.experience = data.experience;
