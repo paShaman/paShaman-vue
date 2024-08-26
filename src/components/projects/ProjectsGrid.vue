@@ -131,7 +131,7 @@ export default {
 					/>
 				</div>
 
-        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white duration-300 cursor-pointer" :class="{active: showTags == true}">
+        <span @click="showTags = !showTags" class="font-medium flex items-center px-4 py-2 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 text-white duration-300 cursor-pointer" :class="{active: showTags == true}">
           Теги
           <i
               data-feather="chevron-down"

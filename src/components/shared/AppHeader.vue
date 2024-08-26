@@ -113,7 +113,7 @@ export default {
 				<!-- Header logos -->
 				<div>
 					<router-link to="/">
-            <span class="text-5xl bg-gradient-to-r bg-clip-text text-transparent font-bold" :class="gradientClass" @click="calcGradientClass">paShaman</span>
+            <span class="text-4xl sm:text-5xl bg-gradient-to-r bg-clip-text text-transparent font-bold" :class="gradientClass" @click="calcGradientClass">paShaman</span>
 					</router-link>
 				</div>
 

@@ -24,10 +24,10 @@ const routes = [
 	},
 	{
 		path: '/projects/:link',
-		name: 'Single Project',
+		name: 'Project',
 		component: SingleProject,
 		meta: {
-			title: 'paShaman - Project',
+			title: 'paShaman - Portfolio',
 		},
 	},
 ];
