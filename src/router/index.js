@@ -11,7 +11,7 @@ const routes = [
 		name: 'Home',
 		component: Home,
 		meta: {
-			title: 'paShaman - Portfolio',
+			title: 'paShaman - Портфолио',
 		},
 	},
 	{
@@ -27,7 +27,7 @@ const routes = [
 		name: 'Project',
 		component: SingleProject,
 		meta: {
-			title: 'paShaman - Portfolio',
+			title: 'paShaman - Портфолио',
 		},
 	},
 ];
