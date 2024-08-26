@@ -64,107 +64,80 @@ export default {
 
 <template>
 	<div class="mt-10 sm:mt-20 bg-primary-light dark:bg-ternary-dark shadow-sm">
-		<!-- About me counters -->
-		<div
-			class="font-normal container mx-auto py-12 md:py-20 flex sm:justify-between lg:justify-around sm:items-center flex-wrap"
-		>
-			<!-- Years of experience counter -->
-			<div class="mb-12 w-1/2 md:w-auto md:mb-0">
+
+		<div class="font-normal container mx-auto py-12 md:py-20 flex sm:justify-between sm:items-center flex-wrap gap-y-12">
+			<div class="w-1/2 md:w-auto md:flex-1">
         <div class="flex items-center gap-2 mb-2 justify-center">
-          <i
-              data-feather="layout"
-              class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
-          ></i>
+          <i data-feather="layout" class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"></i>
           <counter
               ref="counter1"
               :from="0"
               :to="projects"
-              :duration="1.7"
+              :duration="1.2"
               :format="format"
               autoplay
               easing="linear"
               class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
-				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
-				>
+				<span class="block text-md text-ternary-dark dark:text-ternary-light text-center">
 					{{ pluralize(this.projects, ['Проект', 'Проекта', 'Проектов']) }}
 				</span>
 			</div>
 
-			<!-- GitHub stars counter -->
-			<div class="mb-12 w-1/2 md:w-auto md:mb-0">
+			<div class="w-1/2 md:w-auto md:flex-1">
         <div class="flex items-center gap-2 mb-2 justify-center">
-          <i
-              data-feather="clock"
-              class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
-          ></i>
+          <i data-feather="clock" class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"></i>
           <counter
               ref="counter2"
               :from="0"
               :to="experience"
-              :duration="1.5"
+              :duration="1"
               :format="format"
               autoplay
               easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
-				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
-					>
+				<span class="block text-md text-ternary-dark dark:text-ternary-light text-center">
           {{ pluralize(this.experience, ['Год опыта', 'Года опыта', 'Лет опыта']) }}
-        </span
-				>
+        </span>
 			</div>
 
-			<!-- Positive feedback counter -->
-			<div class="w-1/2 md:w-auto">
+			<div class="w-1/2 md:w-auto md:flex-1">
         <div class="flex items-center gap-2 mb-2 justify-center">
-          <i
-              data-feather="coffee"
-              class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
-          ></i>
+          <i data-feather="coffee" class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"></i>
           <counter
               ref="counter3"
               :from="0"
               :to="cups"
-              :duration="1.9"
+              :duration="1.3"
               :format="format"
               autoplay
               easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
-				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
-				>
+				<span class="block text-md text-ternary-dark dark:text-ternary-light text-center">
 					{{ pluralize(this.cups, ['Чашка кофе', 'Чашки кофе', 'Чашек кофе']) }}
 				</span>
 			</div>
 
-			<!-- Projects completed counter -->
-			<div class="w-1/2 md:w-auto">
+			<div class="w-1/2 md:w-auto md:flex-1">
         <div class="flex items-center gap-2 mb-2 justify-center">
-          <i
-              data-feather="globe"
-              class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"
-          ></i>
+          <i data-feather="globe" class="w-5 sm:w-8 h-5 sm:h-8 text-ternary-dark dark:text-ternary-light"></i>
           <counter
               ref="counter4"
               :from="0"
               :to="countries"
-              :duration="1.6"
+              :duration="1.1"
               :format="format"
               autoplay
               easing="linear"
             class="font-medium text-4xl text-secondary-dark dark:text-secondary-light"
           />
         </div>
-				<span
-					class="block text-md text-ternary-dark dark:text-ternary-light text-center"
-				>
+				<span class="block text-md text-ternary-dark dark:text-ternary-light text-center">
 					{{ pluralize(this.countries, ['Страна посещена', 'Страны посещено', 'Стран посещено']) }}
 				</span>
 			</div>
