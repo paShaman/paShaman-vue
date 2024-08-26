@@ -10,9 +10,12 @@ export default {
 		<p
 			class="text-left text-3xl sm:text-4xl font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7"
 		>
-			{{ project.name }}
+      <span v-if="project.name">{{ project.name }}</span>
+
+      <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4" v-if="!project.name"></div>
 		</p>
-		<div class="flex gap-4 sm:gap-10 flex-wrap">
+
+		<div class="flex gap-4 sm:gap-10 flex-wrap" v-if="project.date">
 			<div class="flex items-center">
 				<i
 					data-feather="clock"

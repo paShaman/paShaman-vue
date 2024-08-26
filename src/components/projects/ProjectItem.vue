@@ -20,7 +20,6 @@ export default {
 		<div>
 			<img
 				:src="project.image"
-				:alt="project.title"
 				class="rounded-t-xl border-none"
 			/>
 		</div>

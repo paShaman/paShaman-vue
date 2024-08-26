@@ -1,5 +1,6 @@
 <script>
 import ThemeSwitcher from '../ThemeSwitcher.vue';
+import feather from 'feather-icons';
 
 export default {
 	components: {

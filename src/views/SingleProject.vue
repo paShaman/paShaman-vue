@@ -38,6 +38,9 @@ export default {
                 t.project = data;
 
                 document.title += ' - ' + data.name;
+
+                t.prevProject.link = data.prev;
+                t.nextProject.link = data.next;
               } else {
                 t.$router.push({ name: '404' });
               }

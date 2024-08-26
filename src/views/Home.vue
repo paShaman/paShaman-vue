@@ -10,6 +10,11 @@ export default {
 		AppBanner,
 		ProjectsGrid,
 	},
+
+  mounted() {
+    this.prevProject.link = false;
+    this.nextProject.link = false;
+  }
 };
 </script>
 

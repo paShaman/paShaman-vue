@@ -67,18 +67,35 @@ export default {
 	<div class="block md:flex gap-0 sm:gap-10 mt-14">
     <!-- Single project left section details -->
     <div class="w-full md:w-2/3 text-left">
-      <Fancybox>
+      <Fancybox v-if="project.image">
         <a :href="project.host + (project.image_full || project.image)" data-fancybox>
           <img
-              :src="project.host + project.image" v-if="project.image"
+              :src="project.host + project.image"
               class="rounded-xl cursor-pointer shadow-lg sm:shadow-none"
           />
         </a>
       </Fancybox>
+
+      <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded dark:bg-gray-700 animate-pulse" v-if="!project.image">
+        <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+          <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+        </svg>
+      </div>
     </div>
 
 		<!-- Single project right section details -->
 		<div class="w-full md:w-1/3 text-left mt-10 md:mt-0">
+
+      <div class="w-full animate-pulse" v-if="!project.image">
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+      </div>
+
+      <template v-if="project.image">
 			<div class="mb-7">
 				<ul class="leading-loose grid gap-3">
 					<li
@@ -143,7 +160,7 @@ export default {
         </div>
 			</div>
 
-			<div class="mb-7 p-4 rounded-xl bg-gradient-to-r" v-if="project.works && project.works.length > 1" :class="gradientClass">
+			<div class="mb-7 px-6 py-4 rounded-xl bg-gradient-to-r" v-if="project.works && project.works.length > 1" :class="gradientClass">
 				<p
 					class="font-medium text-2xl text-ternary-dark mb-4"
 				>
@@ -162,6 +179,7 @@ export default {
           </div>
         </div>
 			</div>
+      </template>
 		</div>
 	</div>
 </template>

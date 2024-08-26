@@ -1,10 +1,19 @@
-import { createApp } from 'vue';
+import {createApp, reactive} from 'vue';
 import App from './App.vue';
 import router from './router';
 import './app.css';
 import BackToTop from 'vue-backtotop';
 
-createApp(App)
+let app = createApp(App);
+
+app.config.globalProperties.nextProject = reactive({
+	link: false
+})
+app.config.globalProperties.prevProject = reactive({
+	link: false
+})
+
+app
 	.use(router)
 	.use(BackToTop)
 	.mount('#app');
