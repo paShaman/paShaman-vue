@@ -63,6 +63,19 @@ export default {
             response.json().then((data) => {
               t.projects.push(...data.projects);
               t.tags.push(...data.tags);
+
+              if (t.globalTag.tag) {
+                for (let i in t.tags) {
+                  if (t.tags[i].name == t.globalTag.tag) {
+                    t.tags[i].selected = true;
+                    t.selectedTags.push(t.tags[i]);
+                    t.selectTags(this.selectedTags);
+                    t.showTags = true;
+                    t.globalTag.tag = false;
+                    break;
+                  }
+                }
+              }
             });
           })
           .catch((err) => {

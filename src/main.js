@@ -12,6 +12,9 @@ app.config.globalProperties.nextProject = reactive({
 app.config.globalProperties.prevProject = reactive({
 	link: false
 })
+app.config.globalProperties.globalTag = reactive({
+	tag: false
+})
 
 app
 	.use(router)
