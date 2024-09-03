@@ -17,4 +17,10 @@ export const socialLinks = [
 		icon: 'link',
 		url: 'https://vk.com/pashaman',
 	},
+	{
+		id: 4,
+		name: 'Telegram',
+		icon: 'send',
+		url: 'https://t.me/paShamanZ',
+	},
 ];
