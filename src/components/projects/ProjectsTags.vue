@@ -14,7 +14,7 @@ export default {
 
       if (tag.count >= 100) {
         str = 'bg-violet-300 text-violet-700 hover:border-violet-700 border-violet-400';
-      } else if (tag.count >= 50) {
+      } else if (tag.count >= 30) {
         str = 'bg-emerald-300 text-emerald-700 hover:border-emerald-700 border-emerald-400';
       } else if (tag.count >= 10) {
         str = 'bg-amber-300 text-amber-700 hover:border-amber-700 border-amber-400';
