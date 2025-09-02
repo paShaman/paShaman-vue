@@ -5,95 +5,95 @@ import ProjectItem from './ProjectItem.vue';
 import InfiniteLoading from "v3-infinite-loading";
 
 export default {
-	components: { ProjectItem, ProjectsTags, InfiniteLoading },
-	data: () => {
-		return {
-			projects: [],
-			tags: [],
-			projectsHeading: 'Проекты',
-			searchProject: '',
-			selectedTags: [],
-      onPage: 9,
-      page: 1,
-      showTags: false
-		};
-	},
-	computed: {
-		// Get the filtered projects
-		filteredProjects() {
-      let t = this;
-      let projects = this.projects;
-
-      if (this.selectedTags.length != 0) {
-        projects = this.filterProjectsByTags();
-      }
-
-      if (this.searchProject) {
-        projects = this.filterProjectsBySearch();
-			}
-
-      for (let i in projects) {
-        projects[i].hidden = i >= this.onPage * this.page;
-      }
-
-			return projects;
-		},
-	},
-  watch: {
-    selectedTags(newData, oldData) {
-      this.page = 1;
+    components: {ProjectItem, ProjectsTags, InfiniteLoading},
+    data: () => {
+        return {
+            projects: [],
+            tags: [],
+            projectsHeading: 'Проекты',
+            searchProject: '',
+            selectedTags: [],
+            onPage: 9,
+            page: 1,
+            showTags: false
+        };
     },
-    searchProject(newData, oldData) {
-      this.page = 1;
+    computed: {
+        // Get the filtered projects
+        filteredProjects() {
+            let t = this;
+            let projects = this.projects;
+
+            if (this.selectedTags.length != 0) {
+                projects = this.filterProjectsByTags();
+            }
+
+            if (this.searchProject) {
+                projects = this.filterProjectsBySearch();
+            }
+
+            for (let i in projects) {
+                projects[i].hidden = i >= this.onPage * this.page;
+            }
+
+            return projects;
+        },
     },
-  },
-	methods: {
-    loadProjects() {
-      let t = this;
-
-      let fetchParams = {
-        method: 'GET',
-        //headers: headers,
-      };
-
-      let url = import.meta.env.VITE_ENDPOINT + '/api/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
-
-      fetch(url, fetchParams)
-          .then((response) => {
-            response.json().then((data) => {
-              t.projects.push(...data.projects);
-              t.tags.push(...data.tags);
-
-              if (t.globalTag.tag) {
-                for (let i in t.tags) {
-                  if (t.tags[i].name == t.globalTag.tag) {
-                    t.tags[i].selected = true;
-                    t.selectedTags.push(t.tags[i]);
-                    t.selectTags(this.selectedTags);
-                    t.showTags = true;
-                    t.globalTag.tag = false;
-                    break;
-                  }
-                }
-              }
-            });
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+    watch: {
+        selectedTags(newData, oldData) {
+            this.page = 1;
+        },
+        searchProject(newData, oldData) {
+            this.page = 1;
+        },
     },
-    filterProjectsByTags() {
-      let t = this;
+    methods: {
+        loadProjects() {
+            let t = this;
 
-      let tags = t.selectedTags.map(item => item.name.toString());
+            let fetchParams = {
+                method: 'GET',
+                //headers: headers,
+            };
 
-      return this.projects.filter((el) => el.tags.filter(value => tags.includes(value)).length > 0);
-    },
-		// Filter projects by title search
-		filterProjectsBySearch() {
-			let search = new RegExp(this.searchProject, 'i');
+            let url = import.meta.env.VITE_ENDPOINT + '/api/load-projects' + (this.$route.name == 'Full' ? '?full=true' : '');
 
-			return this.projects.filter((el) => el.name.match(search) || el.tags.join(' ').match(search));
+            fetch(url, fetchParams)
+                    .then((response) => {
+                        response.json().then((data) => {
+                            t.projects.push(...data.projects);
+                            t.tags.push(...data.tags);
+
+                            if (t.globalTag.tag) {
+                                for (let i in t.tags) {
+                                    if (t.tags[i].name == t.globalTag.tag) {
+                                        t.tags[i].selected = true;
+                                        t.selectedTags.push(t.tags[i]);
+                                        t.selectTags(this.selectedTags);
+                                        t.showTags = true;
+                                        t.globalTag.tag = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
+        },
+        filterProjectsByTags() {
+            let t = this;
+
+            let tags = t.selectedTags.map(item => item.name.toString());
+
+            return this.projects.filter((el) => el.tags.filter(value => tags.includes(value)).length > 0);
+        },
+        // Filter projects by title search
+        filterProjectsBySearch() {
+            let search = new RegExp(this.searchProject, 'i');
+
+			return this.projects.filter((el) => el.name.match(search) || el.link.match(search) || el.tags.join(' ').match(search));
 		},
     moreProjects() {
       ++this.page;
@@ -105,8 +105,8 @@ export default {
 	mounted() {
 		feather.replace();
 
-    this.loadProjects();
-	},
+        this.loadProjects();
+    },
 };
 </script>
 
@@ -135,12 +135,8 @@ export default {
 					<input
 						v-model="searchProject"
 						class="font-medium pl-3 pr-1 sm:px-4 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light w-full sm:w-auto"
-						id="name"
-						name="name"
 						type="search"
-						required=""
 						placeholder="Поиск..."
-						aria-label="Name"
 					/>
 				</div>
 
