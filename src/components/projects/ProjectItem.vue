@@ -20,7 +20,7 @@ export default {
 		<div>
 			<img
 				:src="project.image"
-				class="rounded-t-xl border-none"
+				class="rounded-t-xl border-none aspect-square object-cover"
 			/>
 		</div>
 		<div class="px-4 py-6">
